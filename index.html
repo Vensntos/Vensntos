@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hello World</title>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(-45deg, #ff6b6b, #f7b731, #4b7bec, #20bf6b);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  h1 {
+    font-size: 4rem;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    display: flex;
+  }
+
+  .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: bounceIn 0.6s forwards;
+  }
+
+  @keyframes bounceIn {
+    0% { opacity: 0; transform: translateY(30px) scale(0.5); }
+    60% { opacity: 1; transform: translateY(-10px) scale(1.1); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+</style>
+</head>
+<body>
+
+<h1 id="text"></h1>
+
+<script>
+  const text = "Hello World";
+  const container = document.getElementById("text");
+
+  text.split("").forEach((char, i) => {
+    const span = document.createElement("span");
+    span.className = "letter";
+    span.style.animationDelay = `${i * 0.1}s`;
+    span.textContent = char === " " ? "\u00A0" : char;
+    container.appendChild(span);
+  });
+</script>
+
+</body>
+</html>
